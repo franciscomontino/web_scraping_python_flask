@@ -9,12 +9,13 @@ def get_cheaper(list):
   try:
     # Fix prices removing symbols and converting it into float
     for i in list:
-      i.update({"price": float(i["price"].replace("$", ""))})
+      i.update({"price": float(i["price"].replace("$", "").replace(",", ""))})
 
     # Return dict of card with lower price
     index = min(range(len(list)), key=lambda i: list[i]["price"])
     return list[index]
-  except:
+  except Exception as e:
+    print(e)
     return {}
 
 # This method looks into all results and return the cheapest card found
